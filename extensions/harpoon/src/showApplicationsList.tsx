@@ -5,6 +5,7 @@ import getList from "./helpers/getList";
 import moveItem from "./helpers/moveItem";
 import removeItem from "./helpers/removeItem";
 import updateItem from "./helpers/updateItem";
+import openApplication from "./helpers/openApplication";
 
 export default function ApplicationsList() {
   const { data: list, isLoading, revalidate } = usePromise(getList);
@@ -83,7 +84,7 @@ export default function ApplicationsList() {
             subtitle={item.isSticky ? "⭐" : undefined}
             actions={
               <ActionPanel>
-                <Action.Open title="Open" application={item.name} target={item.path} />
+                <Action title="Open" onAction={() => openApplication(item)} />
                 <Action
                   icon={Icon.ArrowUp}
                   title="Move to Top"

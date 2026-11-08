@@ -1,5 +1,6 @@
-import { LaunchProps, closeMainWindow, open, showHUD } from "@raycast/api";
+import { LaunchProps, showHUD } from "@raycast/api";
 import getItemByIndex from "./helpers/getItemByIndex";
+import openApplication from "./helpers/openApplication";
 
 export default async function openApplicationByPosition(
   props: LaunchProps<{ arguments: Arguments.OpenApplicationByPosition }>
@@ -19,8 +20,6 @@ export default async function openApplicationByPosition(
   });
 
   if (item) {
-    open(item.path, item.name);
+    await openApplication(item);
   }
-
-  await closeMainWindow();
 }
